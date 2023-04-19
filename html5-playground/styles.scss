@@ -1,11 +1,55 @@
-$primary: darkred !default;
+$primary: darken(darkred, 5%) !default;
 $enable_rounded: false;
 @import '~bootstrap/scss/bootstrap.scss';
 
 
 
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.my-container {
+    display: flex; /* Verwendet CSS Flexbox */
+    height: 100%; /* Setzt Containerhöhe auf 100% der Bildschirmhöhe */
+    width: 100%; /* Setzt Containerbreite auf 100% der Bildschirmbreite */
+    // justify-content: center; /* Zentriert das Element horizontal */
+    justify-content: flex-end;
+    // align-items: center; /* Zentriert das Element vertikal */
+    align-items: flex-end;
+  }
+
+// .container .test {
+//     color: green;
+// }
+
+// .h2 {
+//     border: 1px solid red;
+// }
+
+// .container h2 {
+//     color: green;
+// }
+
+
+.container { 
+  .test {
+    color: green;
+  }
+  
+  h2 {
+    color: purple;
+  }
+}
+
+.z-depth-2 {
+  box-shadow: 0 8px 17px #0003, 0 6px 20px #00000030;
+}
+
 .super-button {
   @extend .btn;
   @extend .btn-primary;
   @extend .m-4;
+  @extend .p-4;
 }
