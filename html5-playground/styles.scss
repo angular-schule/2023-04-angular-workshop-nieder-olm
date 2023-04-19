@@ -1,6 +1,6 @@
 $primary: darken(darkred, 5%) !default;
 $enable_rounded: false;
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap.scss';
 
 
 
@@ -11,14 +11,54 @@ html, body {
 }
 
 .my-container {
-    display: flex; /* Verwendet CSS Flexbox */
-    height: 100%; /* Setzt Containerhöhe auf 100% der Bildschirmhöhe */
-    width: 100%; /* Setzt Containerbreite auf 100% der Bildschirmbreite */
-    // justify-content: center; /* Zentriert das Element horizontal */
-    justify-content: flex-end;
-    // align-items: center; /* Zentriert das Element vertikal */
-    align-items: flex-end;
-  }
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+}
+
+header {
+  grid-area: header;
+  color: white;
+  background-color: black;
+}
+
+aside {
+  grid-area: sidebar;
+  background-color: silver;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  color: white;
+  background-color: black;
+}
+
+
+
+
+
+
+
+// .my-container {
+//     display: flex; /* Verwendet CSS Flexbox */
+//     height: 100%; /* Setzt Containerhöhe auf 100% der Bildschirmhöhe */
+//     width: 100%; /* Setzt Containerbreite auf 100% der Bildschirmbreite */
+//     // justify-content: center; /* Zentriert das Element horizontal */
+//     justify-content: flex-end;
+//     // align-items: center; /* Zentriert das Element vertikal */
+//     align-items: flex-end;
+//   }
 
 // .container .test {
 //     color: green;
@@ -32,7 +72,7 @@ html, body {
 //     color: green;
 // }
 
-
+/*
 .container { 
   .test {
     color: green;
@@ -53,3 +93,4 @@ html, body {
   @extend .m-4;
   @extend .p-4;
 }
+*/
