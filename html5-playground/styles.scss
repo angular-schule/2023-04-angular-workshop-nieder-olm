@@ -23,6 +23,10 @@ html, body {
       "footer footer";
 }
 
+.mobile {
+  display: none;
+}
+
 header {
   grid-area: header;
   color: white;
@@ -45,7 +49,39 @@ footer {
 }
 
 
+/* Responsive Design für Tablets */
+@media screen and (max-width: 768px) {
+  .my-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas:
+          "header"
+          "sidebar"
+          "main"
+          "footer";
+  }
+}
 
+/* Responsive Design für Smartphones */
+@media screen and (max-width: 480px) {
+  .my-container {
+      grid-template-columns: 5em 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+          "sidebar header"
+          "main main"
+          "footer footer"
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+}
 
 
 
