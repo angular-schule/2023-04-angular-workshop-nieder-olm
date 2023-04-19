@@ -1,2 +1,11 @@
 $primary: darkred !default;
+$enable_rounded: false;
 @import '~bootstrap/scss/bootstrap.scss';
+
+
+
+.super-button {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .m-4;
+}

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build && npm run serve",
+    "serve": "lite-server", 
     "build": "webpack --mode development"
   },
   "keywords": [],
@@ -12,6 +14,7 @@
   "devDependencies": {
     "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
+    "lite-server": "^2.6.1",
     "sass": "^1.62.0",
     "sass-loader": "^13.2.2",
     "style-loader": "^3.3.2",
