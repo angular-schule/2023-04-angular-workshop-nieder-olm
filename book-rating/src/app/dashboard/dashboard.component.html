@@ -2,6 +2,7 @@
 {{ books | json }}
 </pre> -->
 
-<br-book [book]="books[0]"></br-book>
-<br-book [book]="books[1]"></br-book>
-<br-book [book]="books[2]"></br-book>
+<br-book
+  *ngFor="let b of books"
+  [book]="b"
+/>
