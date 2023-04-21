@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookComponent } from '../book/book.component';
 import { NgFor } from '@angular/common';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
     selector: 'br-dashboard',
@@ -28,4 +29,22 @@ export class DashboardComponent {
     description: 'Blubb',
     rating: 1
   }];
+
+  constructor(private br: BookRatingService) { }
+
+  doRateUp(book: Book): void {
+    const ratedBook = this.br.rateUp(book);
+    this.updateAndSort(ratedBook);
+  }
+
+  doRateDown(book: Book): void {
+    const ratedBook = this.br.rateDown(book);
+    this.updateAndSort(ratedBook);
+  }
+
+  updateAndSort(ratedBook: Book) {
+    this.books = this.books
+      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating);
+  }
 }
