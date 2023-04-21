@@ -7,16 +7,14 @@ import { BookComponent } from './book/book.component';
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    BookComponent
-  ],
-  imports: [
-    CommonModule,
-    BooksRoutingModule
-  ],
-  exports: [
-    DashboardComponent
-  ]
+    imports: [
+        CommonModule,
+        BooksRoutingModule,
+        DashboardComponent,
+        BookComponent
+    ],
+    exports: [
+        DashboardComponent
+    ]
 })
 export class BooksModule { }

@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { Book } from '../shared/book';
+import { BookComponent } from '../book/book.component';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'br-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'br-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    standalone: true,
+    imports: [NgFor, BookComponent]
 })
 export class DashboardComponent {
 
