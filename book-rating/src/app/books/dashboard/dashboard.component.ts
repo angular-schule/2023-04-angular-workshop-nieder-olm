@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { Book } from '../shared/book';
-import { BookComponent } from '../book/book.component';
 import { NgFor } from '@angular/common';
+import { Component } from '@angular/core';
+
+import { BookComponent } from '../book/book.component';
+import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
