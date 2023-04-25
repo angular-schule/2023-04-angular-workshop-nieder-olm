@@ -30,15 +30,16 @@ export class DashboardComponent {
     description: 'Blubb',
     rating: 1
   }];
-
-  // VORSICHT: IST KEIN SINGLETON!
-  constructor(private br: BookRatingService, cd: ChangeDetectorRef) {
-
+  constructor(private br: BookRatingService) {
     // window.setTimeout(() => { this.books = []; cd.detectChanges() }, 3000);
   }
 
   doRateUp(book: Book): void {
     const ratedBook = this.br.rateUp(book);
+    // const ratedBook = {
+    //   ...book,
+    //   rating: book.rating < 5 ? book.rating + 1 : 1
+    // }
     this.updateAndSort(ratedBook);
   }
 
