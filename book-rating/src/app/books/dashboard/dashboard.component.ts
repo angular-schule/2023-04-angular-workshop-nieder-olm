@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookComponent } from '../book/book.component';
 import { NgFor } from '@angular/common';
 import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
-    selector: 'br-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
-    standalone: true,
-    imports: [NgFor, BookComponent]
+  selector: 'br-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
+  standalone: true,
+  imports: [NgFor, BookComponent],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 
@@ -30,7 +31,11 @@ export class DashboardComponent {
     rating: 1
   }];
 
-  constructor(private br: BookRatingService) { }
+  // VORSICHT: IST KEIN SINGLETON!
+  constructor(private br: BookRatingService, cd: ChangeDetectorRef) {
+
+    // window.setTimeout(() => { this.books = []; cd.detectChanges() }, 3000);
+  }
 
   doRateUp(book: Book): void {
     const ratedBook = this.br.rateUp(book);
