@@ -13,16 +13,16 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
 
-    const bookRatingMock = {
-      rateUp: (book: Book) => book
-    }
+    // const bookRatingMock = {
+    //   rateUp: (book: Book) => book
+    // }
 
     await TestBed.configureTestingModule({
       imports: [DashboardComponent],
-      providers: [{
-        provide: BookRatingService,
-        useValue: bookRatingMock
-      }]
+      // providers: [{
+      //   provide: BookRatingService,
+      //   useValue: bookRatingMock
+      // }]
     })
     .compileComponents();
 
@@ -33,6 +33,7 @@ describe('DashboardComponent', () => {
 
   it('doRateUp() should forward all calls to BookRatingService', () => {
     const bookRatingMock = TestBed.inject(BookRatingService);
+    // spyOn(bookRatingMock, 'rateUp').and.callFake((book: Book) => book);
     spyOn(bookRatingMock, 'rateUp').and.callThrough();
 
     const book = {} as Book;
