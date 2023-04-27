@@ -20,7 +20,6 @@ export class DashboardComponent {
   books: Book[] = [];
 
   constructor(private br: BookRatingService, private bs: BooksService) {
-    debugger
     this.bs.booksGet().subscribe(books => this.books = books);
   }
 
