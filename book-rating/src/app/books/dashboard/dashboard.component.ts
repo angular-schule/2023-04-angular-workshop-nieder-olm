@@ -6,6 +6,7 @@ import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookCreateComponent } from '../book-create/book-create.component';
 import { BookStoreService } from '../shared/book-store.service';
+import { BooksService } from '../shared/http';
 
 @Component({
   selector: 'br-dashboard',
@@ -19,8 +20,8 @@ export class DashboardComponent {
 
   books: Book[] = [];
 
-  constructor(private br: BookRatingService, private bs: BookStoreService) {
-    this.bs.getBooks().subscribe(books => this.books = books);
+  constructor(private br: BookRatingService, private bs: BooksService) {
+    this.bs.booksGet().subscribe(books => this.books = books);
   }
 
   doRateUp(book: Book): void {

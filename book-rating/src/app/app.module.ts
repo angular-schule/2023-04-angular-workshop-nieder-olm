@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksModule } from './books/books.module';
+import { ApiModule, Configuration } from './books/shared/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,10 @@ import { BooksModule } from './books/books.module';
     BrowserModule,
     AppRoutingModule,
     BooksModule,
-    HttpClientModule
+    HttpClientModule,
+    ApiModule.forRoot(() => new Configuration({
+      basePath: 'https://api.angular.schule'
+    }))
   ],
   providers: [],
   bootstrap: [AppComponent]
