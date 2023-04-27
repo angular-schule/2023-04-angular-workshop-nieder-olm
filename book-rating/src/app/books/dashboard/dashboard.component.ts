@@ -1,11 +1,10 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
+import { BookCreateComponent } from '../book-create/book-create.component';
 import { BookComponent } from '../book/book.component';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
-import { BookCreateComponent } from '../book-create/book-create.component';
-import { BookStoreService } from '../shared/book-store.service';
 import { BooksService } from '../shared/http';
 
 @Component({
@@ -27,7 +26,7 @@ export class DashboardComponent {
   doRateUp(book: Book): void {
     const ratedBook = this.br.rateUp(book);
     // const ratedBook = {
-    //   ...book,
+    //   ...book, 
     //   rating: book.rating < 5 ? book.rating + 1 : 1
     // }
     this.updateAndSort(ratedBook);

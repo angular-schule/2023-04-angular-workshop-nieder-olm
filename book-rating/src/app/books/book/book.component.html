@@ -11,7 +11,9 @@
     <p>{{ book.description }}</p>
 
     <button [disabled]="book.rating < 2" class="btn btn-primary me-2" (click)="doRateDown()">-1</button>
-    <button [disabled]="book.rating > 4" class="btn btn-primary" (click)="doRateUp()">+1</button>
+    <button [disabled]="book.rating > 4" class="btn btn-primary me-2" (click)="doRateUp()">+1</button>
+
+    <a [routerLink]="['/books', book.isbn]" class="btn btn-primary">Details</a>
   </div>
 </div>
 
