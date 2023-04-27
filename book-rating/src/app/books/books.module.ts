@@ -12,9 +12,6 @@ import { BookComponent } from './book/book.component';
         BooksRoutingModule,
         DashboardComponent,
         BookComponent
-    ],
-    exports: [
-        DashboardComponent
     ]
 })
 export class BooksModule { }
