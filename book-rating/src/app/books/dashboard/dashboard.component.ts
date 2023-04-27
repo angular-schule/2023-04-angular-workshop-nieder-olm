@@ -20,13 +20,14 @@ export class DashboardComponent {
   books: Book[] = [];
 
   constructor(private br: BookRatingService, private bs: BooksService) {
+    debugger
     this.bs.booksGet().subscribe(books => this.books = books);
   }
 
   doRateUp(book: Book): void {
     const ratedBook = this.br.rateUp(book);
     // const ratedBook = {
-    //   ...book, 
+    //   ...book,
     //   rating: book.rating < 5 ? book.rating + 1 : 1
     // }
     this.updateAndSort(ratedBook);

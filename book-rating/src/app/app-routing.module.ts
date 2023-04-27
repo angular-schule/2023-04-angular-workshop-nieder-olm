@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'books' }
+  { path: '', pathMatch: 'full', redirectTo: 'books' },
+  { path: 'books', loadChildren: () => import('./books/books.module') }
 ];
 
 @NgModule({
