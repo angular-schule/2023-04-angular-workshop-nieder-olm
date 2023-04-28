@@ -25,6 +25,8 @@ import { loadBooks } from './store/book.actions';
 export default class BooksModule {
 
   constructor(store: Store) {
-    store.dispatch(loadBooks())
+    store.dispatch(loadBooks());
+
+    setTimeout(() => store.dispatch(loadBooks()), 1000)
   }
 }
