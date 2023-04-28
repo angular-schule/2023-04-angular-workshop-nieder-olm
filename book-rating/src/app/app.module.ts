@@ -15,9 +15,9 @@ import { ApiModule, Configuration } from './books/shared/http';
     AppRoutingModule,
     // BooksModule,
     HttpClientModule,
-    // ApiModule.forRoot(() => new Configuration({
-    //   basePath: 'https://api.angular.schule'
-    // }))
+    ApiModule.forRoot(() => new Configuration({
+      basePath: 'https://api.angular.schule'
+    }))
   ],
   providers: [],
   bootstrap: [AppComponent]
