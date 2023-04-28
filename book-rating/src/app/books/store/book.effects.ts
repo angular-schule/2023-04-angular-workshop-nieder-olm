@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -10,7 +10,7 @@ import * as BookActions from './book.actions';
 
 
 @Injectable()
-export class BookEffects {
+export class BookEffects  implements OnInitEffects {
 
   booksService = inject(BooksService);
   store = inject(Store);
@@ -28,5 +28,9 @@ export class BookEffects {
       )
     );
   });
+
+  ngrxOnInitEffects() {
+    return BookActions.loadBooks()
+  }
 }
 //

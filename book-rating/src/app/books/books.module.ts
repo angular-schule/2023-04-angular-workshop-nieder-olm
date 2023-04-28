@@ -27,6 +27,6 @@ export default class BooksModule {
   constructor(store: Store) {
     store.dispatch(loadBooks());
 
-    setTimeout(() => store.dispatch(loadBooks()), 1000)
+    // setTimeout(() => store.dispatch(loadBooks()), 1000)
   }
 }
