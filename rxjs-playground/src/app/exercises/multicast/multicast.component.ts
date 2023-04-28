@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subject, BehaviorSubject, ReplaySubject, Observable, share, takeUntil } from 'rxjs';
+import { Subject, BehaviorSubject, ReplaySubject, Observable, share, takeUntil, shareReplay } from 'rxjs';
 
 import { MeasureValuesService } from './measure-values.service';
 import { ExerciseService } from '../exercise.service';
@@ -18,7 +18,22 @@ export class MulticastComponent implements OnDestroy {
 
   constructor(private mvs: MeasureValuesService, private es: ExerciseService) {
     /**************!!**************/
-    this.measureValues$ = this.mvs.getValues();
+
+    // 1. cold unchanged stream
+    // this.measureValues$ = this.mvs.getValues();
+
+    // 2.
+    this.measureValues$ = this.mvs.getValues().pipe(share())
+    // ist das selbe wie
+    // this.measureValues$ = new Subject<number>();
+    // this.mvs.getValues().subscribe(this.measureValues$);
+
+    // 3.
+    this.measureValues$ = this.mvs.getValues().pipe(shareReplay({
+      bufferSize: 1,
+      refCount: true
+    }))
+
     /**************!!**************/
 
   }
