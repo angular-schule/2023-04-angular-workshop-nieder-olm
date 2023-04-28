@@ -8,7 +8,7 @@ export const loadBooks = createAction(
 
 export const loadBooksSuccess = createAction(
   '[Book] Load Books Success',
-  props<{ data: Book[] }>()
+  props<{ books: Book[] }>()
 );
 
 export const loadBooksFailure = createAction(
