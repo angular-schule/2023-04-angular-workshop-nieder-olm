@@ -1,21 +1,20 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { fromEvent, takeUntil, filter, BehaviorSubject, Subject, withLatestFrom, startWith } from 'rxjs';
+import { fromEvent, takeUntil, filter, BehaviorSubject, Subject, withLatestFrom, startWith, concatMap, tap } from 'rxjs';
 
 @Component({
   selector: 'rxw-dragdrop',
   templateUrl: './dragdrop.component.html',
   styleUrls: ['./dragdrop.component.scss']
 })
-export class DragdropComponent implements OnInit, OnDestroy {
+export class DragdropComponent implements OnInit {
   @ViewChild('target', { static: true }) target!: ElementRef<HTMLElement>;
   targetPosition = [100, 80];
-  unsubscribeAll$ = new Subject<void>();
   mouseDown$ = new BehaviorSubject<boolean>(false);
 
   ngOnInit() {
-    const mouseMove$ = fromEvent<MouseEvent>(document, 'mousemove');
-    const mouseDown$ = fromEvent<MouseEvent>(this.target.nativeElement, 'mousedown');
-    const mouseUp$ = fromEvent<MouseEvent>(document, 'mouseup');
+    const mouseMove$ = fromEvent<MouseEvent>(document, 'mousemove').pipe(tap(console.log));
+    const mouseDown$ = fromEvent<MouseEvent>(this.target.nativeElement, 'mousedown').pipe(tap(console.log));
+    const mouseUp$ = fromEvent<MouseEvent>(document, 'mouseup').pipe(tap(console.log));
 
     /**
      * Nutze RxJS, um die rote Box mit Drag-and-drop zu bewegen.
@@ -30,31 +29,10 @@ export class DragdropComponent implements OnInit, OnDestroy {
     /******************************/
 
     mouseDown$.pipe(
-      takeUntil(this.unsubscribeAll$)
-    )
-    .subscribe(me => this.mouseDown$.next(me.button === 0))
-
-    mouseUp$.pipe(
-      takeUntil(this.unsubscribeAll$)
-    )
-    .subscribe(me => this.mouseDown$.next(false))
-
-    mouseMove$.pipe(
-      takeUntil(this.unsubscribeAll$),
-      withLatestFrom(this.mouseDown$),
-      filter(([_, isDown]) => isDown)
-    )
-    .subscribe({
-      next: (([me, _]) => {
-        this.targetPosition = [me.clientX, me.clientY];
-      })
-    })
+      concatMap(() => mouseMove$.pipe(takeUntil(mouseUp$))),
+    ).subscribe(e => this.setTargetPosition(e));
 
     /******************************/
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll$.next();
   }
 
   private setTargetPosition(event: MouseEvent) {
