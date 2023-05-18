@@ -1,13 +1,15 @@
 <div class="float-end">
   <strong>X =</strong> {{ targetPosition[0] }}<br>
   <strong>Y =</strong> {{ targetPosition[1] }}<br>
+  <strong>Mouse down =</strong> {{ mouseDown$ | async }}<br>
 </div>
 
 <div id="target" #target
   [style.top.px]="targetPosition[1]"
-  [style.left.px]="targetPosition[0]"></div>
+  [style.left.px]="targetPosition[0]">
+</div>
 
-<div style="margin-top: 150px">
+<div style="margin-top: 150px; user-select: none;">
   <strong>Nutze RxJS, um die rote Box mit Drag-and-drop zu bewegen.</strong>
 
   <ul class="mt-3">
